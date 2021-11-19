@@ -5,11 +5,13 @@ const resultScene = require('./modules/resultForAdmin')
 const factOPScene = require('./modules/factOP')
 const addOpScene = require('./modules/addOp')
 const deleteOpScene = require('./modules/deleteOp')
+const addBookScene = require('./modules/addBook')
+const addMonthlyScene = require('./modules/addMonthly')
 require('dotenv').config()
 
 const bot = text.bot
 
-const stage = new Stage([studentsScene, resultScene, factOPScene, addOpScene, deleteOpScene])
+const stage = new Stage([studentsScene, resultScene, factOPScene, addOpScene, deleteOpScene, addBookScene, addMonthlyScene])
 bot.use(session())
 bot.use(stage.middleware())
 
@@ -22,10 +24,10 @@ bot.start(async (ctx) => {
             bot.telegram.sendMessage(ctx.chat.id, 'Привет 🤟️', {
                 reply_markup: {
                     keyboard: [
-                        ['Добавить ученика ✅', 'Общий результат 👀'],
-                        ['Факт ОП 🤑'],
+                        ['Добавить ученика ✅', 'Книга 📖'],
+                        ['Общий результат 👀','Факт ОП 🤑'],
                         ['Добавить ОПшника ➕', 'Кикнуть ОПшника ➖'],
-                        ['Отмена 🚫']
+                        ['Ежемесячник 🔃', 'Отмена 🚫']
                     ],
                     resize_keyboard: true,
                     one_time_keyboard: true
@@ -34,8 +36,8 @@ bot.start(async (ctx) => {
         } else if(opId.find(item => item === (ctx.chat.id).toString())) {
             bot.telegram.sendMessage(ctx.chat.id, `Привет, ${ctx.message.from.first_name} ${ctx.message.from.last_name ? ctx.message.from.last_name: ''} ✌`, {
                 reply_markup: {
-                    keyboard: [['Добавить ученика ✅'],
-                        ['Отмена 🚫']],
+                    keyboard: [['Добавить ученика ✅', 'Ежемесячник 🔃'],
+                        ['Книга 📖', 'Отмена 🚫']],
                     resize_keyboard: true,
                     one_time_keyboard: true
                 }
@@ -54,6 +56,8 @@ bot.hears('Общий результат 👀', async(ctx)=> {try {ctx.scene.ent
 bot.hears('Факт ОП 🤑', async (ctx)=> {try {ctx.scene.enter('factOPWizard')} catch (e) {await ctx.reply("что то пошло не так, обратитесь к разработчику")}})
 bot.hears('Добавить ОПшника ➕', async(ctx)=> {try {ctx.scene.enter('addOpWizard')} catch (e) {await ctx.reply("что то пошло не так, обратитесь к разработчику")}})
 bot.hears('Кикнуть ОПшника ➖', async(ctx)=> {try {ctx.scene.enter('deleteOpWizard')} catch (e) {await ctx.reply("что то пошло не так, обратитесь к разработчику")}})
+bot.hears('Книга 📖', async(ctx)=> {try {ctx.scene.enter('addBookWizard')} catch (e) {await ctx.reply("что то пошло не так, обратитесь к разработчику")}})
+bot.hears('Ежемесячник 🔃', async(ctx)=> {try {ctx.scene.enter('addMonthlyWizard')} catch (e) {await ctx.reply("что то пошло не так, обратитесь к разработчику")}})
 
 bot.help((ctx) => ctx.reply('Если возникли вопросы по разработке, пишите сюда: @zhassulannuradil'))
 

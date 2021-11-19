@@ -9,6 +9,7 @@ const bot = new Telegraf(BOT_TOKEN)
 
 const dueDateText = "Выберите срок оплаты (месяц)"
 const paymentAmountText = "Вид оплаты 🤑"
+const newOrOldStudentText = "Школьник"
 const adressText = "Выберите адрес"
 const paymentReceivedText = "Куда поступила оплата 🏦"
 const resultSumText = "Результат:"
@@ -34,6 +35,9 @@ const paymentReceivedKBoard = Markup.inlineKeyboard([
 const resultSumKBoard = Markup.inlineKeyboard([
      [Markup.button.callback('Факта за период', 'sumFact')],
     [Markup.button.callback('Сколько денег в каждом счете', 'moneyAccount')]])
+const newOrOldStudentKBoard = Markup.inlineKeyboard([
+    [Markup.button.callback('Новый', 'new'),
+    Markup.button.callback('Старый', 'old')]])
 
 const client = new google.auth.JWT(
     CREDENTIALS.client_email,
@@ -171,9 +175,9 @@ const keyboardMenu = {
     reply_markup: {
         keyboard: [
             ['Добавить ученика ✅', 'Общий результат 👀'],
-            ['Факт ОП 🤑'],
+            ['Ежемесячник 🔃','Факт ОП 🤑'],
             ['Добавить ОПшника ➕', 'Кикнуть ОПшника ➖'],
-            ['Отмена 🚫']
+            ['Книга 📖', 'Отмена 🚫']
         ],
         resize_keyboard: true,
         one_time_keyboard: true
@@ -183,8 +187,8 @@ const keyboardMenu = {
 const keyboardMenuForUser = {
     reply_markup: {
         keyboard: [
-            ['Добавить ученика ✅'],
-            ['Отмена 🚫']
+            ['Добавить ученика ✅', 'Ежемесячник 🔃'],
+            ['Книга 📖','Отмена 🚫']
         ],
         resize_keyboard: true,
         one_time_keyboard: true
@@ -197,10 +201,12 @@ module.exports.paymentAmountText = paymentAmountText
 module.exports.adressText = adressText
 module.exports.paymentReceivedText = paymentReceivedText
 module.exports.resultSumText = resultSumText
+module.exports.newOrOldStudentText = newOrOldStudentText
 module.exports.dueDateTextKBoard = dueDateTextKBoard
 module.exports.paymentAmountTextKBoard = paymentAmountTextKBoard
 module.exports.adressTextKBoard = adressTextKBoard
 module.exports.paymentReceivedKBoard = paymentReceivedKBoard
+module.exports.newOrOldStudentKBoard = newOrOldStudentKBoard
 module.exports.resultSumKBoard = resultSumKBoard
 module.exports.client = client
 module.exports.gsapi = gsapi
