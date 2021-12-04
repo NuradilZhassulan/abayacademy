@@ -15,6 +15,7 @@ startStep.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к разработчику")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -50,6 +51,7 @@ addContract.use(async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к разработчику")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 

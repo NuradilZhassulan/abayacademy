@@ -31,6 +31,7 @@ startStep.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -48,6 +49,7 @@ newOrOldStudentText.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 newOrOldStudentText.on('callback_query', async (ctx) => {
@@ -71,6 +73,7 @@ newOrOldStudentText.on('callback_query', async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -129,6 +132,7 @@ studentName.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -146,6 +150,7 @@ studentClass.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -164,6 +169,7 @@ parentName.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -181,6 +187,7 @@ paymentAmount.hears(/^[0-9]+$/, async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -196,6 +203,7 @@ paymentReceived.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 paymentReceived.on("callback_query", async (ctx) => {
@@ -222,6 +230,7 @@ paymentReceived.on("callback_query", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -239,6 +248,7 @@ startLearning.hears(/^[0-9.]+$/, async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -347,6 +357,7 @@ conditionStep.on("callback_query", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -395,6 +406,7 @@ studentNameRepeat.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -467,6 +479,7 @@ oldStudentStep.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 

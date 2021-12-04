@@ -10,6 +10,7 @@ startStep.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к разработчику")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -22,6 +23,7 @@ beforeDate.hears(/^[0-9.]+$/, async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к разработчику")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -57,6 +59,7 @@ savetDate.hears(/^[0-9.]+$/, async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к разработчику")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -85,6 +88,7 @@ nameOpshnik.on('callback_query', async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к разработчику")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -100,6 +104,7 @@ finalResult.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к разработчику")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 finalResult.action("finalresult", async (ctx) => {
@@ -113,6 +118,7 @@ finalResult.action("finalresult", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к разработчику")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 

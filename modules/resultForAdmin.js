@@ -19,6 +19,7 @@ startStep.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -43,6 +44,7 @@ beforeDate.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
@@ -82,23 +84,11 @@ savetDate.on("text", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
 const finalResult = new Composer()
-finalResult.on("text", async (ctx) => {
-    try {
-        if(ctx.message.text === 'Отмена 🚫') {
-            await ctx.replyWithHTML("пока")
-            return ctx.scene.leave()
-        } else {
-            await ctx.replyWithHTML("Нажмите на 'показать результат' 👆")
-        }
-    } catch (e) {
-        await ctx.reply("что то пошло не так, обратитесь к администратору")
-        console.error(e)
-    }
-})
 finalResult.action("finalresult", async (ctx) => {
     try {
         await ctx.answerCbQuery()
@@ -125,6 +115,7 @@ finalResult.action("finalresult", async (ctx) => {
     } catch (e) {
         await ctx.reply("что то пошло не так, обратитесь к администратору")
         console.error(e)
+        return ctx.scene.leave()
     }
 })
 
