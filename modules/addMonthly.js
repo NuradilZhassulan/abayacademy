@@ -284,6 +284,7 @@ conditionStep.on("callback_query", async (ctx) => {
         }
         wizardDate = ctx.wizard.state.data
         const keyboardMenuForUser = text.keyboardMenuForUser
+        const keyboardMenu = text.keyboardMenu
 
         /* Срок оплаты */
         let dueDate = 1
@@ -346,7 +347,12 @@ conditionStep.on("callback_query", async (ctx) => {
 
         let money = wizardDate.paymentAmount
 
-        await ctx.replyWithHTML(`\nФИО школьника: <b>${wizardDate.namestud}</b>\nКласс, направление: <b>${wizardDate.classstud}</b>\nФИО родителя: <b>${wizardDate.parentName}</b>\nСумма договора: <b>${wizardDate.paymentAmount}</b>\nСумма оплаты: <b>${money}</b> <i>ежемесячник</i>\nСрок оплаты: <b>${dueDate} (месяцев)</b>\nКуда поступила оплата: <b>${wizardDate.paymentReceived}</b>\nАдрес: <b>${wizardDate.address}</b>\n`, keyboardMenuForUser)
+        if(ctx.chat.id === 400336335 || ctx.chat.id === 256177977 || ctx.chat.id === 275028553) {
+            await ctx.replyWithHTML(`\nФИО школьника: <b>${wizardDate.namestud}</b>\nКласс, направление: <b>${wizardDate.classstud}</b>\nФИО родителя: <b>${wizardDate.parentName}</b>\nСумма оплаты: <b>${wizardDate.paymentAmount}</b>\nКуда поступила оплата: <b>${wizardDate.paymentReceived}</b>`, keyboardMenu)
+        } else {
+            await ctx.replyWithHTML(`\nФИО школьника: <b>${wizardDate.namestud}</b>\nКласс, направление: <b>${wizardDate.classstud}</b>\nФИО родителя: <b>${wizardDate.parentName}</b>\nСумма оплаты: <b>${wizardDate.paymentAmount}</b>\nКуда поступила оплата: <b>${wizardDate.paymentReceived}</b>`, keyboardMenuForUser)
+        }
+
         const bot = text.bot
         let id = -1001587919699;
         let message = `Инициатор: <b>${ctx.wizard.state.data.firstname} ${ctx.wizard.state.data.last_name ? ctx.wizard.state.data.last_name: ''}</b>\nФИО школьника: <b>${wizardDate.namestud}</b>\nКласс, направление: <b>${wizardDate.classstud}</b>\nФИО родителя: <b>${wizardDate.parentName}</b>\nСумма договора: <b>${wizardDate.paymentAmount}</b>\nСумма оплаты: <b>${money}</b> <i>${wizardDate.paymentAmountText}</i>\nСрок оплаты: <b>${dueDate} (месяцев)</b>\nКуда поступила оплата: <b>${wizardDate.paymentReceived}</b>\nАдрес: <b>${wizardDate.address}</b>\n`;
@@ -469,7 +475,7 @@ oldStudentStep.on("text", async (ctx) => {
 
             await ctx.replyWithHTML(`ФИО школьника: <b>${studName}</b>\nКласс, направление: <b>${findRow[2]}</b>\nФИО родителя: <b>${findRow[3]}</b>\nСумма договора: <b>${findRow[4]}</b>\nСумма оплаты: <b>${wizardDate.prepayment}</b> <i>${wizardDate.paymentAmountText}</i>\nСрок оплаты: <b>${findRow[16]} (месяцев)</b>\nКуда поступила оплата: <b>${findRow[22]}</b>\nАдрес: <b>${findRow[23]}</b>\n`)
             const bot = text.bot
-            let id = -100158791969
+            let id = -1001587919699
             let message = `Инициатор: <b>${ctx.wizard.state.data.firstname} ${ctx.wizard.state.data.last_name ? ctx.wizard.state.data.last_name: ''}</b>\nФИО школьника: <b>${studName}</b>\nКласс, направление: <b>${findRow[2]}</b>\nФИО родителя: <b>${findRow[3]}</b>\nСумма договора: <b>${findRow[4]}</b>\nСумма оплаты: <b>${wizardDate.prepayment}</b> <i>ежемесячник</i>\nСрок оплаты: <b>${findRow[16]} (месяцев)</b>\nКуда поступила оплата: <b>${findRow[22]}</b>\nАдрес: <b>${findRow[23]}</b>\n`
             let parse_mode = 'HTML'
             bot.telegram.sendMessage(id, message, {parse_mode});

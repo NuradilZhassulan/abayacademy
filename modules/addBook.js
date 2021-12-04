@@ -140,6 +140,7 @@ paymentReceived.on("callback_query", async (ctx) => {
         }
         wizardDate = ctx.wizard.state.data
         const keyboardMenuForUser = text.keyboardMenuForUser
+        const keyboardMenu = text.keyboardMenu
 
         const gsapi = text.gsapi
         const optUpdate = {
@@ -160,7 +161,12 @@ paymentReceived.on("callback_query", async (ctx) => {
 
         gsapi.spreadsheets.values.append(optUpdate)
 
-        await ctx.replyWithHTML(`\nФИО школьника: <b>${wizardDate.namestud}</b>\nКласс, направление: <b>${wizardDate.classstud}</b>\nФИО родителя: <b>${wizardDate.parentName}</b>\nСумма оплаты: <b>${wizardDate.paymentAmount}</b>\nКуда поступила оплата: <b>${wizardDate.paymentReceived}</b>`, keyboardMenuForUser)
+        if(ctx.chat.id === 400336335 || ctx.chat.id === 256177977 || ctx.chat.id === 275028553) {
+            await ctx.replyWithHTML(`\nФИО школьника: <b>${wizardDate.namestud}</b>\nКласс, направление: <b>${wizardDate.classstud}</b>\nФИО родителя: <b>${wizardDate.parentName}</b>\nСумма оплаты: <b>${wizardDate.paymentAmount}</b>\nКуда поступила оплата: <b>${wizardDate.paymentReceived}</b>`, keyboardMenu)
+        } else {
+            await ctx.replyWithHTML(`\nФИО школьника: <b>${wizardDate.namestud}</b>\nКласс, направление: <b>${wizardDate.classstud}</b>\nФИО родителя: <b>${wizardDate.parentName}</b>\nСумма оплаты: <b>${wizardDate.paymentAmount}</b>\nКуда поступила оплата: <b>${wizardDate.paymentReceived}</b>`, keyboardMenuForUser)
+        }
+
         const bot = text.bot
         let id = -1001587919699;
         let message = `Инициатор: <b>${ctx.wizard.state.data.firstname} ${ctx.wizard.state.data.last_name ? ctx.wizard.state.data.last_name: ''}</b>\nФИО школьника: <b>${wizardDate.namestud}</b>\nКласс, направление: <b>${wizardDate.classstud}</b>\nФИО родителя: <b>${wizardDate.parentName}</b>\nСумма оплаты: <b>${wizardDate.paymentAmount}</b>\nКуда поступила оплата: <b>${wizardDate.paymentReceived}</b>`;
