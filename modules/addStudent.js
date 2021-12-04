@@ -681,7 +681,7 @@ surchargeSum.on("text", async (ctx) => {
             }
 
             const bot = text.bot
-            let id = -1001587919699
+            let id = -1001587919699;
             let message = `Инициатор: <b>${ctx.wizard.state.data.firstname} ${ctx.wizard.state.data.last_name ? ctx.wizard.state.data.last_name: ''}</b>\nФИО школьника: <b>${studName}</b>\nКласс, направление: <b>${findRow[2]}</b>\nФИО родителя: <b>${findRow[3]}</b>\nСумма договора: <b>${findRow[4]}</b>\nСумма оплаты: <b>${wizardDate.prepayment}</b> <i>${wizardDate.paymentAmountText}</i>\nСрок оплаты: <b>${findRow[16]} (месяцев)</b>\nКуда поступила оплата: <b>${findRow[22]}</b>\nАдрес: <b>${findRow[23]}</b>\n`
             let parse_mode = 'HTML'
             bot.telegram.sendMessage(id, message, {parse_mode});
